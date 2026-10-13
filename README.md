@@ -1,6 +1,16 @@
-# Brick wall calculator
+# Brick Wall Calculator – Bricks, Cement & Sand
 
 A browser-based estimate of bricks, cement bags, sand and selected costs, developed by [Ozairwebs](https://ozairwebs.com/). Supports wall dimensions in feet or metres, brick dimensions in inches or millimetres, and deductions for openings.
+
+**[Open the calculator](https://ozairweb.github.io/brick-wall-calculator/)** · [Source files](index.html)
+
+## Features
+
+Feet or metres; custom brick sizes; opening deductions; bag weight; mortar ratio; whole brick count; cement and sand estimates; selected costs; validation and responsive layout.
+
+## Example screenshot
+
+![Actual worked example](assets/calculator-example.png)
 
 ## Run it
 
