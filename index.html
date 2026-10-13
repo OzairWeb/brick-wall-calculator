@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browser-based material estimates by Ozairwebs, with metric and imperial inputs and documented assumptions." />
   <title>Brick Wall Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<header class="project-intro"><p><a href="https://ozairwebs.com/">Ozairwebs</a> / Public development tools</p><h1>Brick wall material estimator</h1><p>Enter your dimensions to make a preliminary estimate. Review the assumptions below before using the result.</p></header>
   <p style="text-align:center;">The following Brick Calculator tool helps estimate the total number of bricks, cement bags, and sand required for constructing a wall based on user inputs. It also calculates the cost of the bricks and cement based on user-specified prices.</p>
   <div class="calculator">
     <div class="toggle-group">
@@ -17,70 +19,70 @@
     <div id="feetSection">
       <hr>
       <h4>Dimension of Wall (Feet)</h4>
-      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-wall-dimention.jpg" alt="brick wall dimention" style="width:252px;height:auto"/>
-      <label>Length (feet):</label>
-      <input type="number" id="wallLengthFeet" placeholder="Enter wall length in feet">
-      <label>Height (feet):</label>
-      <input type="number" id="wallHeightFeet" placeholder="Enter wall height in feet">
-      <label>Wall Thickness (inches):</label>
-      <input type="number" id="wallThicknessFeet" placeholder="Enter wall thickness in inches">
-      <label>Subtract Window or Door Area (sqft):</label>
-      <input type="number" id="windowDoorAreaFeet" placeholder="Subtract window or door area (sqft)" value="0">
+      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-wall-dimention.jpg" alt="Wall length, height and thickness dimensions" style="width:252px;height:auto"/>
+      <label for="wallLengthFeet">Length (feet):</label>
+    <input type="number" step="any" min="0" id="wallLengthFeet" placeholder="Enter wall length in feet">
+      <label for="wallHeightFeet">Height (feet):</label>
+    <input type="number" step="any" min="0" id="wallHeightFeet" placeholder="Enter wall height in feet">
+      <label for="wallThicknessFeet">Wall Thickness (inches):</label>
+    <input type="number" step="any" min="0" id="wallThicknessFeet" placeholder="Enter wall thickness in inches">
+      <label for="windowDoorAreaFeet">Subtract Window or Door Area (sqft):</label>
+    <input type="number" step="any" min="0" id="windowDoorAreaFeet" placeholder="Subtract window or door area (sqft)" value="0">
     </div>
 
     <div id="metersSection" style="display: none;">
       <hr>
       <h4>Dimension of Wall (Meters)</h4>
-      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-wall-dimention.jpg" alt="brick wall dimention" style="width:252px;height:auto"/>
-      <label>Length (meters):</label>
-      <input type="number" id="wallLengthMeters" placeholder="Enter wall length in meters">
-      <label>Height (meters):</label>
-      <input type="number" id="wallHeightMeters" placeholder="Enter wall height in meters">
-      <label>Wall Thickness (millimeters):</label>
-      <input type="number" id="wallThicknessMeters" placeholder="Enter wall thickness in millimeters">
-      <label>Subtract Window or Door Area (sqm):</label>
-      <input type="number" id="windowDoorAreaMeters" placeholder="Subtract window or door area (sqm)" value="0">
+      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-wall-dimention.jpg" alt="Wall length, height and thickness dimensions" style="width:252px;height:auto"/>
+      <label for="wallLengthMeters">Length (meters):</label>
+    <input type="number" step="any" min="0" id="wallLengthMeters" placeholder="Enter wall length in meters">
+      <label for="wallHeightMeters">Height (meters):</label>
+    <input type="number" step="any" min="0" id="wallHeightMeters" placeholder="Enter wall height in meters">
+      <label for="wallThicknessMeters">Wall Thickness (millimeters):</label>
+    <input type="number" step="any" min="0" id="wallThicknessMeters" placeholder="Enter wall thickness in millimeters">
+      <label for="windowDoorAreaMeters">Subtract Window or Door Area (sqm):</label>
+    <input type="number" step="any" min="0" id="windowDoorAreaMeters" placeholder="Subtract window or door area (sqm)" value="0">
     </div>
 
     <hr>
     <div id="brickDimensionFeet">
       <h5>Brick Dimensions (Inches)</h5>
-      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-dimention.jpg" alt="" style="width:285px;height:auto"/>
-      <label>Brick Length (inches):</label>
-      <input type="number" id="brickLengthFeet" placeholder="Enter brick length in inches" value="9">
-      <label>Brick Width (inches):</label>
-      <input type="number" id="brickWidthFeet" placeholder="Enter brick width in inches" value="4.5">
-      <label>Brick Thickness (inches):</label>
-      <input type="number" id="brickThicknessFeet" placeholder="Enter brick thickness in inches" value="3">
+      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-dimention.jpg" alt="Brick length, width and thickness dimensions" style="width:285px;height:auto"/>
+      <label for="brickLengthFeet">Brick Length (inches):</label>
+    <input type="number" step="any" min="0" id="brickLengthFeet" placeholder="Enter brick length in inches" value="9">
+      <label for="brickWidthFeet">Brick Width (inches):</label>
+    <input type="number" step="any" min="0" id="brickWidthFeet" placeholder="Enter brick width in inches" value="4.5">
+      <label for="brickThicknessFeet">Brick Thickness (inches):</label>
+    <input type="number" step="any" min="0" id="brickThicknessFeet" placeholder="Enter brick thickness in inches" value="3">
     </div>
 
     <div id="brickDimensionMeters" style="display: none;">
       <h5>Brick Dimensions (Millimeters)</h5>
-      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-dimention.jpg" alt="" style="width:285px;height:auto"/>
-      <label>Brick Length (mm):</label>
-      <input type="number" id="brickLengthMeters" placeholder="Enter brick length in mm" value="228">
-      <label>Brick Width (mm):</label>
-      <input type="number" id="brickWidthMeters" placeholder="Enter brick width in mm" value="114">
-      <label>Brick Thickness (mm):</label>
-      <input type="number" id="brickThicknessMeters" placeholder="Enter brick thickness in mm" value="76">
+      <img src="https://360civil-engineering.com/wp-content/uploads/2024/09/brick-dimention.jpg" alt="Brick length, width and thickness dimensions" style="width:285px;height:auto"/>
+      <label for="brickLengthMeters">Brick Length (mm):</label>
+    <input type="number" step="any" min="0" id="brickLengthMeters" placeholder="Enter brick length in mm" value="228">
+      <label for="brickWidthMeters">Brick Width (mm):</label>
+    <input type="number" step="any" min="0" id="brickWidthMeters" placeholder="Enter brick width in mm" value="114">
+      <label for="brickThicknessMeters">Brick Thickness (mm):</label>
+    <input type="number" step="any" min="0" id="brickThicknessMeters" placeholder="Enter brick thickness in mm" value="76">
     </div>
 
-    <label>Brick Price (per brick):</label>
-    <input type="number" id="brickPrice" placeholder="Enter brick price" value="0">
+    <label for="brickPrice">Brick Price (per brick):</label>
+    <input type="number" step="any" min="0" id="brickPrice" placeholder="Enter brick price" value="0">
 
     <hr>
     <h4>Cement Bag</h4>
-    <label>Weight (KG):</label>
-    <input type="number" id="cementWeight" placeholder="Enter weight in KG" value="50">
-    <label>Mortar Ratio (Cement : Sand):</label>
-    <input type="number" id="cementRatioCement" placeholder="Cement ratio" value="1">
-    <input type="number" id="cementRatioSand" placeholder="Sand ratio" value="5">
-    <label>Cement Bag Price:</label>
-    <input type="number" id="cementPrice" placeholder="Enter cement price" value="0">
+    <label for="cementWeight">Weight (KG):</label>
+    <input type="number" step="any" min="0" id="cementWeight" placeholder="Enter weight in KG" value="50">
+    <label for="cementRatioCement">Mortar Ratio (Cement : Sand):</label>
+    <input type="number" step="any" min="0" id="cementRatioCement" placeholder="Cement ratio" value="1">
+    <input aria-label="Sand parts in mortar ratio" type="number" step="any" min="0" id="cementRatioSand" placeholder="Sand ratio" value="5">
+    <label for="cementPrice">Cement Bag Price:</label>
+    <input type="number" step="any" min="0" id="cementPrice" placeholder="Enter cement price" value="0">
 
     <button onclick="calculateBricksQuantity()">Calculate</button>
 
-    <div class="results" id="resultContainer">
+    <div class="results" id="resultContainer" aria-live="polite" hidden>
       <table>
         <thead>
           <tr>
@@ -100,6 +102,8 @@
     </div>
   </div>
 
+  <section class="project-notes"><h2>How to interpret this estimate</h2><p>Uses the legacy brick adjustment factor 0.94921875, dry-mortar allowance 33% of wall volume and cement density 1,440 kg/m³. Costs use your entered unit prices; no currency conversion is performed.</p><p>This tool supports preliminary quantity planning. Mix design, structural suitability, site waste, joint dimensions and actual purchasing quantities need project-specific confirmation. Labour, delivery, taxes and other materials are not included.</p><p><a href="README.md">Calculation details and examples</a> · <a href="https://ozairwebs.com/company/contact/">Discuss a custom calculator</a></p></section>
   <script src="script.js"></script>
 </body>
 </html>
+
