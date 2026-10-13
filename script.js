@@ -1,4 +1,5 @@
 function toggleFeet() {
+  document.getElementById("resultContainer").hidden = true;
   document.getElementById("feetSection").style.display = "block";
   document.getElementById("metersSection").style.display = "none";
   document.getElementById("brickDimensionFeet").style.display = "block";
@@ -7,6 +8,7 @@ function toggleFeet() {
   document.getElementById("metersBtn").classList.remove("active");
 }
 function toggleMeters() {
+  document.getElementById("resultContainer").hidden = true;
   document.getElementById("feetSection").style.display = "none";
   document.getElementById("metersSection").style.display = "block";
   document.getElementById("brickDimensionFeet").style.display = "none";
@@ -15,11 +17,17 @@ function toggleMeters() {
   document.getElementById("metersBtn").classList.add("active");
 }
 function calculateBricksQuantity() {
-  if (document.getElementById("feetSection").style.display === "block") {
-    calculateFeetSection();
-  } else {
-    calculateMetersSection();
-  }
+  const feet = document.getElementById("feetSection").style.display !== "none";
+  const suffix = feet ? "Feet" : "Meters";
+  const positive = ["wallLength", "wallHeight", "wallThickness", "brickLength", "brickWidth", "brickThickness"].map(id => Number(document.getElementById(id + suffix).value));
+  positive.push(Number(document.getElementById("cementWeight").value), Number(document.getElementById("cementRatioCement").value), Number(document.getElementById("cementRatioSand").value));
+  const opening = Number(document.getElementById("windowDoorArea" + suffix).value);
+  const prices = ["brickPrice", "cementPrice"].map(id => Number(document.getElementById(id).value));
+  const invalid = positive.some(n => !Number.isFinite(n) || n <= 0) || !Number.isFinite(opening) || opening < 0 || opening >= positive[0] * positive[1] || prices.some(n => !Number.isFinite(n) || n < 0);
+  document.getElementById("resultContainer").hidden = true;
+  if (invalid) { alert("Enter positive dimensions, bag weight and ratio parts; non-negative prices; and openings smaller than the wall area."); return; }
+  if (feet) calculateFeetSection(); else calculateMetersSection();
+  document.getElementById("resultContainer").hidden = false;
 }
 function calculateFeetSection() {
   const l = parseFloat(document.getElementById("wallLengthFeet").value);
@@ -32,23 +40,23 @@ function calculateFeetSection() {
   const bt = parseFloat(document.getElementById("brickThicknessFeet").value) / 12;
   const bp = parseFloat(document.getElementById("brickPrice").value);
   const bVol = bl * bw * bt;
-  const bricks = Math.ceil(vol / bVol) * 0.94921875;
+  const bricks = Math.ceil((vol / bVol) * 0.94921875);
   const bCost = bricks * bp;
   const cr1 = parseFloat(document.getElementById("cementRatioCement").value);
   const cr2 = parseFloat(document.getElementById("cementRatioSand").value);
   const cw = parseFloat(document.getElementById("cementWeight").value);
   const cp = parseFloat(document.getElementById("cementPrice").value);
   const ratio = cr1 + cr2;
-  const cVol = (cr1 / ratio) * (vol * 0.3175);
-  const sVol = (cr2 / ratio) * (vol * 0.3175);
-  const bags = cVol * 40 / cw;
+  const cVol = (cr1 / ratio) * (vol * 0.33);
+  const sVol = (cr2 / ratio) * (vol * 0.33);
+  const bags = cVol * 0.028316846592 * 1440 / cw;
   const cCost = bags * cp;
   document.getElementById("totalVolume").textContent = vol.toFixed(2) + " CFT";
-  document.getElementById("numBricks").textContent = bricks.toFixed(2) + " Bricks";
-  document.getElementById("brickCost").textContent = "$" + bCost.toFixed(2);
+  document.getElementById("numBricks").textContent = bricks.toFixed(0) + " Bricks";
+  document.getElementById("brickCost").textContent =  bCost.toFixed(2);
   document.getElementById("cementBags").textContent = bags.toFixed(2) + " Bags";
   document.getElementById("sand").textContent = sVol.toFixed(2) + " CFT";
-  document.getElementById("cementCost").textContent = "$" + cCost.toFixed(2);
+  document.getElementById("cementCost").textContent =  cCost.toFixed(2);
 }
 function calculateMetersSection() {
   const l = parseFloat(document.getElementById("wallLengthMeters").value);
@@ -61,7 +69,7 @@ function calculateMetersSection() {
   const bt = parseFloat(document.getElementById("brickThicknessMeters").value) / 1000;
   const bp = parseFloat(document.getElementById("brickPrice").value);
   const bVol = bl * bw * bt;
-  const bricks = Math.ceil(vol / bVol) * 0.94921875;
+  const bricks = Math.ceil((vol / bVol) * 0.94921875);
   const bCost = bricks * bp;
   const cr1 = parseFloat(document.getElementById("cementRatioCement").value);
   const cr2 = parseFloat(document.getElementById("cementRatioSand").value);
@@ -73,10 +81,11 @@ function calculateMetersSection() {
   const bags = cVol * 1440 / cw;
   const cCost = bags * cp;
   document.getElementById("totalVolume").textContent = vol.toFixed(3) + " m³";
-  document.getElementById("numBricks").textContent = bricks.toFixed(2) + " Bricks";
-  document.getElementById("brickCost").textContent = "$" + bCost.toFixed(3);
+  document.getElementById("numBricks").textContent = bricks.toFixed(0) + " Bricks";
+  document.getElementById("brickCost").textContent =  bCost.toFixed(3);
   document.getElementById("cementBags").textContent = bags.toFixed(3) + " Bags";
   document.getElementById("sand").textContent = sVol.toFixed(3) + " m³";
-  document.getElementById("cementCost").textContent = "$" + cCost.toFixed(3);
+  document.getElementById("cementCost").textContent =  cCost.toFixed(3);
 }
 toggleFeet();
+
